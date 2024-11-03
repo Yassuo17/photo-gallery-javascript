@@ -1,0 +1,91 @@
+<html>
+<body onload="addTabIndex()">
+	
+	<div id = "image" onclick="change(this)">
+		Hover over an image below to display here.
+	</div>
+	
+	<img class = "preview" alt = "Web Development" src = "https://cdn.pixabay.com/photo/2019/05/14/17/07/web-development-4202909_1280.png" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+	
+	<img class = "preview" alt = "Backend Development" src = "https://cdn.pixabay.com/photo/2019/09/22/16/20/backend-4496461_1280.png" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+	
+	<img class = "preview" src = "https://cdn.pixabay.com/photo/2024/05/15/20/57/developer-8764524_1280.jpg" alt = "Workstation of a Developer" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+
+	<img class = "preview" alt = "Languages in web development" src = "https://img.freepik.com/free-vector/abstract-new-app-development-elements-illustrated_23-2148683146.jpg?ga=GA1.1.486368929.1720333604&semt=ais_hybrid" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+	
+	<img class = "preview" alt = "Frontend Development" src = "https://img.freepik.com/free-vector/content-management-system-concept-flat-design_23-2148818338.jpg?ga=GA1.1.486368929.1720333604&semt=ais_hybrid" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+	
+	<img class = "preview" alt="Mobile App Development" src = "https://img.freepik.com/free-vector/ui-ux-designers-isometric-background_1284-71566.jpg?ga=GA1.1.486368929.1720333604&semt=ais_hybrid" onmouseover = "upDate(this)" onmouseout = "unDo()" onblur="myFunction()">
+  
+</body>
+<style>
+     body{
+    margin: 2%;
+    border: 1px solid black;
+    background-color: #b3b3b3;
+}
+#image{
+    line-height:650px;
+    width: 575px;
+    height: 650px;
+    border:5px solid black;
+    margin:0 auto;
+    background-color: #8e68ff;
+    background-image: url('');
+    background-repeat: no-repeat;
+    color:#FFFFFF;
+    text-align: center;
+    background-size: 100%;
+    margin-bottom:25px;
+    font-size: 150%;
+}
+.preview{
+    width:10%;
+    margin-left:17%;
+    border: 10px solid black;
+}
+img{
+    width:95%;
+}
+</style>
+<script>
+function upDate(previewPic){
+    document.getElementById("image").style.backgroundImage = `url('${previewPic.src}')`;
+
+    document.getElementById("image").innerHTML = previewPic.alt;
+     
+}
+   
+    function unDo(){
+    document.getElementById("image").style.backgroundImage = `url('')`;
+
+    document.getElementById("image").innerHTML = `Hover over an image below to display here.`;
+}
+
+// onFocus Event
+function change(element) {
+    element.style.backgroundColor = "gold";
+    element.style.color = "black";
+}
+
+// Onblur Event
+function myFunction() {
+    let x = document.querySelectorAll("img");
+    for (i = 0; i < x.length; i++){
+        x[i].alt = x[i].alt.toUpperCase();
+    }
+}
+myFunction();
+ 
+// Setting Tabindex
+function addTabIndex(){
+    let images = document.querySelectorAll("img");
+
+    for (i = 0; i < images.length; i++){
+        let tabIndex = i;
+
+        images[i].setAttribute("tabindex", tabIndex);
+    }
+}
+</script>
+</html>

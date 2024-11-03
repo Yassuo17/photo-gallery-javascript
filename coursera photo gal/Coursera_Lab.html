@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+</head>
+<body>
+    <header>
+    <h1>Interactive Photo Gallery</h1>
+    <div class="gallery">
+        
+        <div class="display">
+            <img id="mainImage" src="c:\Users\hp\Pictures\PHOTOS\IMG_6258.JPG" alt="Main display">
+        </div>
+    </div>
+    </header>
+        <div class="thumbnails">
+            <img src="c:\Users\hp\Pictures\PHOTOS\IMG_6258.JPG" alt="Photo 1" onmouseover="changeImage(this.src)"
+            onmouseleave="resetImage()"
+                onfocus= "focusImage(this.src)" 
+                onblur="resetImage()"
+                tabindex="0">
+            <img src="c:\Users\hp\Pictures\PHOTOS\FGAM4517.JPG" alt="Photo 2" onmouseover="changeImage(this.src)" onmouseleave="resetImage()"
+            onfocus="focusImage(this.src)" 
+            onblur="resetImage()" 
+            tabindex="0">
+            <img src="c:\Users\hp\Pictures\PHOTOS\FPRD9328.JPEG" alt="Photo 3" onmouseover="changeImage(this.src)"onmouseleave="resetImage()"
+            onfocus="focusImage(this.src)" 
+            onblur="resetImage()" 
+            tabindex="0">
+            <img src="c:\Users\hp\Pictures\PHOTOS\GLUX0573.JPG" alt="Photo 4" onmouseover="changeImage(this.src)"onmouseleave="resetImage()"
+            onfocus="focusImage(this.src)" 
+            onblur="resetImage()" 
+            tabindex="0">
+            <img src="c:\Users\hp\Pictures\PHOTOS\IMG_9384.JPG" alt="Photo 5" onmouseover="changeImage(this.src)"onmouseleave="resetImage()"
+            onfocus="focusImage(this.src)" 
+            onblur="resetImage()" 
+            tabindex="0">
+            <img src="c:\Users\hp\Pictures\PHOTOS\IMG_0769.JPG" alt="Photo 6" onmouseover="changeImage(this.src)"onmouseleave="resetImage()"
+            onfocus="focusImage(this.src)" 
+            onblur="resetImage()" 
+            tabindex="0">
+        </div>
+        <div id="image">Hover over or focus on an image</div>
+    </div>
+    <script>
+        function resetImage() {
+            let mainImage = document.getElementById("mainImage");
+            mainImage.src = "IMG_6258.JPG"; 
+            document.getElementById("image").textContent = "Hover over or focus on an image";
+            console.log("Image reset to default");
+        }
+        
+        function addTabFocusAttributes() {
+            let thumbnails = document.querySelectorAll(".thumbnails img");
+
+            for (let i = 0; i < thumbnails.length; i++) {
+                thumbnails[i].setAttribute("tabindex", "0");
+
+                
+                thumbnails[i].onfocus = function() {
+                    changeImage(thumbnails[i].src);
+                    console.log("Thumbnail focused:", thumbnails[i].src); 
+                };
+                thumbnails[i].onblur = function() {
+                    resetImage();
+                    console.log("Thumbnail focus lost:", thumbnails[i].src);
+                };
+
+                
+                thumbnails[i].addEventListener("keydown", function(event) {
+                    if (event.key === "Enter") {
+                        changeImage(thumbnails[i].src);
+                        console.log("Enter key pressed on:", thumbnails[i].src); 
+                    }
+                });
+            }
+            console.log("Tabindex attributes and keyboard events added to all thumbnails");
+        }
+        window.onload = addTabFocusAttributes;
+    function changeImage(imageSrc){
+    let mainImage = document.getElementById("mainImage");
+    mainImage.src = imageSrc;
+}
+
+function upDate(previewPic)
+{
+    let imageDiv = document.getElementById("image");
+    imageDiv.style.backgroundImage = 'url(' + previewPic.src + ')';
+    imageDiv.textContent = previewPic.alt;
+}
+function unDo(){
+    let mainImage = document.getElementById("image");
+    imageDiv.style.backgroundImage = 'url()' ;
+    imageDiv.textContent = "Hover over an image ";
+    } 
+</script>
+</body>
+<style>
+    header{
+        text-align: center;
+        align-items: center;
+    }
+    h1{
+        text-align: center;
+        box-shadow: #333;
+        text-shadow: #333;
+
+    }
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+#image {
+    padding: 10px;
+    font-size: 1.2em;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.3s ease;
+}
+
+.gallery {
+    text-align: center;
+}
+
+.display {
+    margin-bottom: 20px;
+}
+
+.display img {
+    width: 500px;
+    height: auto;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+.thumbnails img {
+    width: 100px;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.thumbnails img:hover{
+    transform : scale(1.2);
+    border: 1px ;
+    border-radius: 4px ;
+}
+</style>
+</html>
